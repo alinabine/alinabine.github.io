@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Formation : confection des cartes scolaires</title>
+<style>
+:root{--bg:#f7f8fb;--card:#fff;--tx:#1b2333;--mut:#5d6a82;--pri:#1f5fd6;--pri2:#e8f0ff;--bd:#dfe4ee;--ok:#1a9a5b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f141f;--card:#182030;--tx:#eaeef6;--mut:#9aa8c2;--pri:#6ea0ff;--pri2:#1c2a47;--bd:#2a3550;--ok:#43c88a}}
+:root[data-theme="dark"]{--bg:#0f141f;--card:#182030;--tx:#eaeef6;--mut:#9aa8c2;--pri:#6ea0ff;--pri2:#1c2a47;--bd:#2a3550;--ok:#43c88a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55}
+.w{max-width:960px;margin:0 auto;padding:0 18px}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--card);border-bottom:1px solid var(--bd);z-index:5}
+header .w{display:flex;justify-content:space-between;align-items:center;padding-top:12px;padding-bottom:12px}
+.logo{font-weight:700}
+nav a{margin-left:14px;color:var(--mut);text-decoration:none;font-size:.92rem}
+.hero{padding:44px 0 30px}
+.hero h1{font-size:clamp(1.7rem,5vw,2.6rem);line-height:1.15;margin:0 0 12px}
+.hero p{color:var(--mut);max-width:620px;font-size:1.05rem}
+.btn{display:inline-block;background:var(--pri);color:#fff;border:0;border-radius:10px;padding:11px 18px;font-size:1rem;cursor:pointer;text-decoration:none}
+.btn.alt{background:var(--pri2);color:var(--pri)}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.stats span{background:var(--card);border:1px solid var(--bd);border-radius:999px;padding:6px 14px;font-size:.9rem}
+h2{margin:36px 0 14px;font-size:1.4rem}
+.grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:760px){.grid{grid-template-columns:320px 1fr}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px}
+.mod h3{margin:14px 0 6px;font-size:.95rem;color:var(--mut)}
+.mod h3:first-child{margin-top:0}
+.les{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:none;border:1px solid transparent;border-radius:10px;padding:9px;color:var(--tx);font:inherit;cursor:pointer}
+.les:hover{background:var(--pri2)}
+.les.on{background:var(--pri2);border-color:var(--pri)}
+.dot{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--bd);display:grid;place-items:center;font-size:12px;color:#fff}
+.les.done .dot{background:var(--ok);border-color:var(--ok)}
+.les small{display:block;color:var(--mut)}
+.video{aspect-ratio:16/9;background:linear-gradient(135deg,#1f3a73,#1f5fd6);border-radius:12px;display:grid;place-items:center;color:#fff;text-align:center;padding:16px}
+.video b{display:block;font-size:1.1rem;margin-bottom:8px}
+.player h3{margin:14px 0 4px;font-size:1.2rem}
+.player p{color:var(--mut);margin:0 0 14px}
+.bar{height:8px;background:var(--bd);border-radius:99px;overflow:hidden;margin:6px 0 4px}
+.bar i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+.faq details{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px 16px;margin-bottom:10px}
+.faq summary{cursor:pointer;font-weight:600}
+.faq p{color:var(--mut);margin:8px 0 0}
+input{width:100%;padding:11px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font:inherit;margin-bottom:10px}
+footer{margin-top:40px;padding:22px 0;border-top:1px solid var(--bd);color:var(--mut);font-size:.9rem;text-align:center}
+</style>
+</head>
+<body>
+<header><div class="w"><span class="logo">🪪 Cartes scolaires</span><nav><a href="#cours">Cours</a><a href="#faq">FAQ</a><a href="#inscription">Inscription</a></nav></div></header>
+
+<main class="w">
+<section class="hero">
+<h1>Apprenez à confectionner des cartes scolaires, pas à pas</h1>
+<p>Une formation gratuite en vidéo, ouverte à toute personne intéressée : de la collecte des données à l’impression de cartes d’identité scolaires professionnelles.</p>
+<p><a class="btn" href="#cours">Commencer la formation</a></p>
+<div class="stats"><span>🎬 <b id="nl">0</b> leçons vidéo</span><span>📚 6 modules</span><span>🆓 Accessible à tous</span></div>
+</section>
+
+<section id="cours">
+<h2>Le cours</h2>
+<div class="grid">
+<div class="card mod" id="mods"></div>
+<div class="card player">
+<div class="video" id="vid"></div>
+<h3 id="lt"></h3><p id="ld"></p>
+<button class="btn" id="mark">Marquer comme terminée</button>
+<div style="margin-top:18px"><div class="bar"><i id="pb"></i></div><small id="pt" style="color:var(--mut)"></small></div>
+</div>
+</div>
+</section>
+
+<section id="faq" class="faq">
+<h2>Questions fréquentes</h2>
+<details><summary>Faut-il des connaissances en informatique ?</summary><p>Non. Les bases de Word ou Excel suffisent pour suivre la formation.</p></details>
+<details><summary>Quel matériel est nécessaire ?</summary><p>Un ordinateur, et pour l’impression une imprimante adaptée aux cartes PVC ou un prestataire d’impression.</p></details>
+<details><summary>La formation est-elle payante ?</summary><p>Non, l’accès est libre pour toute personne intéressée.</p></details>
+</section>
+
+<section id="inscription">
+<h2>Restez informé</h2>
+<div class="card" style="max-width:480px">
+<p style="margin-top:0;color:var(--mut)">Laissez votre nom pour être prévenu des nouvelles vidéos.</p>
+<input id="nm" placeholder="Votre nom"><input id="ct" placeholder="Téléphone ou e-mail">
+<button class="btn" id="go">S’inscrire</button><p id="msg" style="color:var(--ok)"></p>
+</div>
+</section>
+</main>
+<footer>© 2026 Formation sur les cartes scolaires</footer>
+
+<script>
+// Pour ajouter une vidéo : renseignez "url" (lien YouTube ou autre) pour chaque leçon.
+var MODS=[
+{m:"1. Introduction",l:[{t:"Qu’est-ce qu’une carte scolaire ?",d:"5 min",x:"Rôle de la carte, informations obligatoires et bonnes pratiques.",url:""},{t:"Matériel et logiciels",d:"8 min",x:"Ordinateur, imprimante, logiciels nécessaires.",url:""}]},
+{m:"2. Collecte des données",l:[{t:"Préparer la liste des élèves",d:"10 min",x:"Structurer un fichier Excel : nom, prénoms, classe, matricule.",url:""},{t:"Photos d’identité",d:"9 min",x:"Prise de vue, cadrage, nommage et redimensionnement des photos.",url:""}]},
+{m:"3. Conception du modèle",l:[{t:"Dessiner le recto et le verso",d:"14 min",x:"Logo, couleurs, emplacement de la photo et des textes.",url:""}]},
+{m:"4. Génération automatique",l:[{t:"Insérer les données dans le modèle",d:"15 min",x:"Fusionner la liste des élèves avec le modèle pour produire toutes les cartes.",url:""},{t:"Ajouter les photos automatiquement",d:"12 min",x:"Associer chaque photo à la fiche de l’élève.",url:""}]},
+{m:"5. Impression et finition",l:[{t:"Impression et découpe",d:"10 min",x:"Réglages d’impression, papier ou PVC, plastification.",url:""}]},
+{m:"6. Contrôle et distribution",l:[{t:"Vérifier et distribuer les cartes",d:"7 min",x:"Contrôle qualité, corrections et remise aux élèves.",url:""}]}
+];
+var all=[],done={},cur=0,KEY="cartes-progress";
+try{done=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+function $(i){return document.getElementById(i)}
+MODS.forEach(function(g){g.l.forEach(function(x){all.push(x)})});
+$("nl").textContent=all.length;
+function render(){
+var h="",i=0;
+MODS.forEach(function(g){h+="<h3>"+g.m+"</h3>";g.l.forEach(function(x){
+h+='<button class="les'+(i==cur?" on":"")+(done[i]?" done":"")+'" data-i="'+i+'"><span class="dot">'+(done[i]?"✓":"")+'</span><span>'+x.t+'<small>'+x.d+'</small></span></button>';i++})});
+$("mods").innerHTML=h;
+var c=all[cur];
+$("vid").innerHTML=c.url?'<div><b>▶ '+c.t+'</b><a class="btn alt" target="_blank" rel="noopener" href="'+c.url+'">Ouvrir la vidéo</a></div>':'<div><b>🎬 Vidéo bientôt disponible</b>'+c.d+'</div>';
+$("lt").textContent=c.t;$("ld").textContent=c.x;
+$("mark").textContent=done[cur]?"Terminée ✓ (annuler)":"Marquer comme terminée";
+var n=Object.keys(done).filter(function(k){return done[k]}).length;
+$("pb").style.width=(100*n/all.length)+"%";$("pt").textContent=n+" / "+all.length+" leçons terminées";
+Array.prototype.forEach.call(document.querySelectorAll(".les"),function(b){b.onclick=function(){cur=+b.dataset.i;render()}});
+}
+$("mark").onclick=function(){done[cur]=!done[cur];try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}render()};
+$("go").onclick=function(){if(!$("nm").value.trim()){$("msg").textContent="Merci d’indiquer votre nom.";return}$("msg").textContent="Merci "+$("nm").value.trim()+" ! Nous vous contacterons.";$("nm").value="";$("ct").value=""};
+render();
+</script>
+</body>
+</html>
